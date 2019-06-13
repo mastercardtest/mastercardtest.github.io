@@ -6,54 +6,53 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <script>
+            (function() {
+            function openModal() {
+                var modalTrigger = document.getElementsByClassName('jsModalTrigger');
 
-(function() {
-  function openModal() {
-      var modalTrigger = document.getElementsByClassName('jsModalTrigger');
+                for(var i = 0; i < modalTrigger.length; i++) {
+                    modalTrigger[i].onclick = function() {
+                        var target = this.getAttribute('href').substr(1);
+                        var modalWindow = document.getElementById(target);
 
-      for(var i = 0; i < modalTrigger.length; i++) {
-          modalTrigger[i].onclick = function() {
-            var target = this.getAttribute('href').substr(1);
-            var modalWindow = document.getElementById(target);
+                        modalWindow.classList ? modalWindow.classList.add('open') : modalWindow.className += ' ' + 'open'; 
+                    }
+                }   
+            }
 
-            modalWindow.classList ? modalWindow.classList.add('open') : modalWindow.className += ' ' + 'open'; 
-          }
-      }   
-  }
+            function closeModal(){
+                var closeButton = document.getElementsByClassName('jsModalClose');
+                var closeOverlay = document.getElementsByClassName('jsOverlay');
 
-  function closeModal(){
-    var closeButton = document.getElementsByClassName('jsModalClose');
-    var closeOverlay = document.getElementsByClassName('jsOverlay');
+                for(var i = 0; i < closeButton.length; i++) {
+                    closeButton[i].onclick = function() {
+                    var modalWindow = this.parentNode.parentNode;
 
-      for(var i = 0; i < closeButton.length; i++) {
-        closeButton[i].onclick = function() {
-          var modalWindow = this.parentNode.parentNode;
+                    modalWindow.classList ? modalWindow.classList.remove('open') : modalWindow.className = modalWindow.className.replace(new RegExp('(^|\\b)' + 'open'.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
+                    }
+                }   
 
-          modalWindow.classList ? modalWindow.classList.remove('open') : modalWindow.className = modalWindow.className.replace(new RegExp('(^|\\b)' + 'open'.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
-        }
-      }   
+                for(var i = 0; i < closeOverlay.length; i++) {
+                    closeOverlay[i].onclick = function() {
+                    var modalWindow = this.parentNode;
 
-      for(var i = 0; i < closeOverlay.length; i++) {
-        closeOverlay[i].onclick = function() {
-          var modalWindow = this.parentNode;
+                    modalWindow.classList ? modalWindow.classList.remove('open') : modalWindow.className = modalWindow.className.replace(new RegExp('(^|\\b)' + 'open'.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
+                    }
+                }  
 
-          modalWindow.classList ? modalWindow.classList.remove('open') : modalWindow.className = modalWindow.className.replace(new RegExp('(^|\\b)' + 'open'.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
-        }
-      }  
+            }
 
-  }
+            function ready(fn) {
+                if (document.readyState != 'loading'){
+                fn();
+                } else {
+                document.addEventListener('DOMContentLoaded', fn);
+                }
+            }
 
-  function ready(fn) {
-    if (document.readyState != 'loading'){
-      fn();
-    } else {
-      document.addEventListener('DOMContentLoaded', fn);
-    }
-  }
-
-  ready(openModal);
-  ready(closeModal);
-}());
+            ready(openModal);
+            ready(closeModal);
+            }());
     </script>
     <style>
             .card {
@@ -103,84 +102,84 @@
                 font-size: 20px;
             }
 
-        .modal{
-            position: fixed;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            z-index: 20;
-            padding: 30px;
-            width:  100%;
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            opacity: 0;
-            visibility: hidden;
-            transition:visibility 0s linear 0.1s,opacity 0.3s ease;
-            display: flex;
-            justify-content: center;
-            align-items: center
-        }
-        
-        .modal.open{
-            visibility:visible;
-            opacity: 1;
-            transition-delay:0s;
-            background: white;
-            font-family: FfMarkLightNarrow,Helvetica,Arial,sans-serif;
-        }
-        
-        .modal.__overlay{
-            position: fixed;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            right: 0;
-            z-index: 21;
-            background-color: rgba(0,0,0,0.7);
-        }
+            .modal{
+                position: fixed;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                z-index: 20;
+                padding: 30px;
+                width:  100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                opacity: 0;
+                visibility: hidden;
+                transition:visibility 0s linear 0.1s,opacity 0.3s ease;
+                display: flex;
+                justify-content: center;
+                align-items: center
+            }
             
-        .modal:hover{
-            color: #000;
-        }
+            .modal.open{
+                visibility:visible;
+                opacity: 1;
+                transition-delay:0s;
+                background: white;
+                font-family: FfMarkLightNarrow,Helvetica,Arial,sans-serif;
+            }
+            
+            .modal.__overlay{
+                position: fixed;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                z-index: 21;
+                background-color: rgba(0,0,0,0.7);
+            }
+                
+            .modal:hover{
+                color: #000;
+            }
 
-        .modal__container {
-            height: 40%;
-            width: 70%;
-            background-color: white;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            flex-direction: column;
-            border-radius: 3px;
-            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            .modal__container {
+                height: 40%;
+                width: 70%;
+                background-color: white;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                flex-direction: column;
+                border-radius: 3px;
+                box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 
-        }
+            }
 
-        .note {
-            font-size: 13px;
-            margin-top: 10px;
-        }
+            .note {
+                font-size: 13px;
+                margin-top: 10px;
+            }
 
-        .point {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-        }
+            .point {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+            }
 
-        .message {
-            height: 20%;
-        }
+            .message {
+                height: 20%;
+            }
 
-        .button {
-            height: 20px;
-            width: 110px;
-            border-radius: 5px;
-            background: #ff7e00;
-            color: white;
-        }
+            .button {
+                height: 20px;
+                width: 110px;
+                border-radius: 5px;
+                background: #ff7e00;
+                color: white;
+            }
     </style>
 </head>
 <body class="body">
