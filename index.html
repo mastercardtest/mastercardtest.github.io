@@ -164,6 +164,30 @@
             border: 2px solid #ff7e00;
             border-radius: 3px;
         }
+
+        .note {
+            font-size: 13px;
+            margin-top: 10px;
+        }
+
+        .point {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .message {
+            height: 20%;
+        }
+
+        .button {
+            height: 30px;
+            width: 110px;
+            border-radius: 5px;
+            background: #ff7e00;
+            color: white;
+        }
     </style>
 </head>
 <body class="body">
@@ -177,7 +201,7 @@
                     <img src="download.jpg" style="width: 40%">
                 </div>
                 <div>
-                    <h2>Checked In, Congrats!</h2>
+                    <h2>Akash is Checked In</h2>
                 </div>
                 <div class="container">
                     <h4><b>11-09M</b></h4> 
@@ -188,13 +212,19 @@
 
         <a href="#jsModal" id="popup" class="jsModalTrigger">Thank Melinda</a>
 
+        <div class="note">Note: This will send 5 reward points</div>
+
 
         <div id="jsModal" class="modal">
             <div class="modal__overlay jsOverlay"></div>
             <div class="modal__container">
-                <h1>Success!</h1>
-                <img src="images.png" style="width: 15%"></img>
-                <p>You sent Melinda 5 reward points</p>
+                <div class="message">
+                    Send Melinda a Note
+                </div>
+                <div>
+                    <textarea rows="5" cols="40" placeholder="Note"></textarea>
+                </div>
+                <button class="button">Send</button>
             </div>
         </div>
     
