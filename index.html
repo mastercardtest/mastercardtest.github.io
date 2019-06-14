@@ -180,6 +180,20 @@
                 background: #ff7e00;
                 color: white;
             }
+            .text {
+                box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+                width: 90%;
+                height: 70px;
+            }
+
+            textarea {
+                height: 40%;
+                width: 89.5%;
+                box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+                border: none;
+                margin-top: 20px;
+                resize: none;
+            }
     </style>
 </head>
 <body class="body">
@@ -197,28 +211,18 @@
                 </div>
                 <div class="container">
                     <h4><b>11-09M</b></h4> 
-                    <p>NYC Tech Hub</p> 
+                    <p>Points Sent</p> 
                 </div>
             </div>
         </div>
-
-        <a href="#jsModal" id="popup" class="jsModalTrigger">Thank Melinda</a>
-
-        <div class="note">Note: This will send 5 reward points</div>
-
-
+        <textarea rows="5" cols="60" placeholder="Add a message"></textarea>
+        <a href="#jsModal" id="popup" class="jsModalTrigger">Send to Melinda</a>
         <div id="jsModal" class="modal">
             <div class="modal__overlay jsOverlay"></div>
             <div class="modal__container">
-                <div class="message">
-                    Send Melinda a Note
-                </div>
-                <div>
-                    <textarea rows="5" cols="40" placeholder="Note"></textarea>
-                </div>
-                <button class="button">Send</button>
+                <h1>Success!</h1>
+                <div>Message was sent to Melinda</div>
             </div>
         </div>
-    
 </body>
 </html>
